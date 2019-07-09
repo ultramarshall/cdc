@@ -249,8 +249,7 @@ function simpan_user(){
 
 function upload_resi(){
 	date_default_timezone_set('Asia/Jakarta');
-	$tanggal=date('d-M-Y');
-	$jam=date('H:i:s');
+	$tanggal=date('Y-m-d h:i:s');
 
 	$id_bank=$_POST['id_bank'];
 
@@ -261,10 +260,10 @@ function upload_resi(){
 	$cari="SELECT * FROM pembayaran where id_user='$_SESSION[id]'";
 	$res=mysql_query($cari);
 	if(mysql_num_rows($res)==0){
-	$sql="INSERT into pembayaran (id_bank,id_user,waktu,foto) values ('$id_bank','$_SESSION[id]','$tanggal&nbsp;$jam','$filename')";
+	$sql="INSERT into pembayaran (id_bank,id_user,waktu,foto) values ('$id_bank','$_SESSION[id]','$tanggal','$filename')";
 	// echo $sql;die();
 	}else{
-	$sql="UPDATE pembayaran set id_bank='$id_bank',waktu='$tanggal &nbsp; $jam',foto='$filename' where id_user='$_SESSION[id]'";
+	$sql="UPDATE pembayaran set id_bank='$id_bank',waktu='$tanggal',foto='$filename' where id_user='$_SESSION[id]'";
 	}
 	$res=mysql_query($sql);
 

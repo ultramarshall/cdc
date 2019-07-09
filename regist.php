@@ -1,4 +1,6 @@
 <?php
+
+
 include 'modul/koneksi.php';
 session_start();
 if(isset($_SESSION['id'])){
@@ -351,11 +353,16 @@ function tampil_harga($type,$jenis){
         <tr>
           <td><input type="submit" name="btn" value="Save" class="btn btn-primary"></td>
         </tr>
-        <?php }else{?>
+        <?php }elseif($arr1['status']==1){?>
           <tr>
-            <span class="label label-success">Menunggu Approval</span>
+            <span class="label label-info">Menunggu Approval</span>
           </tr>
-          <?php } ?>
+        <?php } else { ?>
+          <tr>
+            <span class="label label-success">Sudah di Approve</span>
+            <a href="index.php" style="float: right">kembali ke home</a>
+          </tr>
+        <?php } ?>
         </form>
         
         
