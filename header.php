@@ -48,7 +48,7 @@ function tampil_harga($type,$jenis){
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" >
-    <title>Institut Teknologi Indonesia</title>
+    <title>Institut Teknologi Indonesia (ITI)</title>
 	
 	<!-- core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
