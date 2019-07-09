@@ -1,5 +1,6 @@
 <?php
 	include 'header.php';
+	
 	if(!isset($_GET['mode'])){
 ?>
 <div class="container" style="width: 90%">
