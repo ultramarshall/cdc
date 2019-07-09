@@ -231,16 +231,16 @@ function simpan_user(){
 	// die();
 	$res=mysql_query($sql);
 	if($res){
-	move_uploaded_file($_FILES['foto']['tmp_name'],"../admin/user/".$filename);
-	$sql1="SELECT * from user order by id_user DESC";
-	$res1=mysql_query($sql1);
-	$arr1=mysql_fetch_array($res1);
-	mysql_query("Insert into pembayaran (id_user) values('$arr1[id_user]')");
-	echo "<script>document.location.href='../index.php'</script>";
-	echo "<script>alert('Data Berhasil Disimpan')</script>";
+		move_uploaded_file($_FILES['foto']['tmp_name'],"../admin/user/".$filename);
+		$sql1="SELECT * from user order by id_user DESC";
+		$res1=mysql_query($sql1);
+		$arr1=mysql_fetch_array($res1);
+		mysql_query("Insert into pembayaran (id_user) values('$arr1[id_user]')");
+		echo "<script>alert('Data Berhasil Disimpan')</script>";
+		echo "<script>document.location.href='../index.php'</script>";
 	}else{
-	echo "<script>alert('Data Gagal Disimpan')</script>";
-	echo "<script>document.location.href='login.php?mode=regist'</script>";
+		echo "<script>alert('Data Gagal Disimpan')</script>";
+		echo "<script>document.location.href='login.php?mode=regist'</script>";
 	}
 	// echo $sql;
 	// die();
