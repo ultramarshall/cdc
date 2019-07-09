@@ -1,6 +1,6 @@
 <?php
-		include 'header.php';
-		if(!isset($_GET['mode'])){
+	include 'header.php';
+	if(!isset($_GET['mode'])){
 ?>
 <div class="container" style="width: 90%">
 <center><h2><b>LOGIN</b></h2></center>
