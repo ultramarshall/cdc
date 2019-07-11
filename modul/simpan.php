@@ -15,35 +15,9 @@ require 'PHPMailer/src/SMTP.php';
 		switch($mode){
 			case 'simpan_user';
 				
+				simpan_user();
 
-
-
-				$mail = new PHPMailer();
-				$mail->isSMTP();
-				// $mail->SMTPDebug = 2;
-				$mail->Debugoutput = 'html';
-				$mail->Host = "smtp.gmail.com"; //host smtp kalian
-				$mail->Port = 587; //Port smtp kalian
-				$mail->SMTPAuth = true;
-				$mail->Username = "btelaumbanua29@gmail.com"; //User smtp kalian
-				$mail->Password = "KMzWAy87a@"; //Password smtp kalian
-				$mail->setFrom('btelaumbanua29@gmail.com', 'CDC ITI'); //Email pengirim
-
-				$mail->addAddress('ugd24jam@gmail.com'); //Email tujuan
-				$mail->Subject = 'Subjeknya';
-
-				$message = file_get_contents('template/sample.html'); 
-
-
-				$mail->MsgHTML($message);
-				$mail->IsHTML(true); 
-				$mail->CharSet="utf-8";
-
-				if($mail->send()){
-					echo "success";
-				}
-			die();
-			exit();
+				
 			break;
 			case 'simpan_lowongan';
 			simpan_lowongan();
@@ -245,6 +219,34 @@ function simpan_user(){
 	$alamat=$_POST['alamat'];
 	$tempat=$_POST['tempat'];
 	$tanggal=$_POST['tanggal'];
+	$harga = tampil_harga('reguler','Pelamar');
+$mail = new PHPMailer();
+$mail->isSMTP();
+// $mail->SMTPDebug = 2;
+$mail->Debugoutput = 'html';
+$mail->Host = "smtp.mailgun.org"; //host smtp kalian
+$mail->Port = 587; //Port smtp kalian
+$mail->SMTPAuth = true;
+$mail->Username = "postmaster@sandboxb2c96320d5c9440fb3cb4e3d2463dc02.mailgun.org"; //User smtp kalian
+$mail->Password = "e7584ea2e0aea804187e85d4679ad838-afab6073-4e5ce5ea"; //Password smtp kalian
+$mail->setFrom('no-reply@cdciti.com', 'CDC ITI'); //Email pengirim
+
+$mail->addAddress($email); //Email tujuan
+$mail->Subject = 'Subjeknya';
+
+$body = file_get_contents('template/pembayaran.php'); 
+$body = str_replace('$nama', $nama, $body);
+$body = str_replace('$harga', $harga, $body);
+$body = preg_replace('/\\\\/','', $body);
+
+$mail->MsgHTML($body);
+$mail->IsHTML(true); 
+$mail->CharSet="utf-8";
+
+if($mail->send()){
+	echo "success";
+}
+die();
 	if(isset($_POST['kapasitas'])){
 		$kapasitas=$_POST['kapasitas'];
 		$ext1=",'$kapasitas'";
@@ -405,5 +407,14 @@ function checkout(){
 	// die();
 		echo "<script>document.location.href='../menu-transaksi.php?mode='</script>";
 	}	
+
+
+	function tampil_harga($type,$jenis){
+	  $sql="Select harga from harga where type='$type' AND jenis='$jenis'";
+	  $res=mysql_query($sql);
+	  $arr=mysql_fetch_array($res);
+
+	  return $arr['harga'];
+	}
 
 ?>
