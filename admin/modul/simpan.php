@@ -1,4 +1,5 @@
 <?php
+die();
 		session_start();
 		// include '../modul/prosesLogin.php';
 		include 'koneksi.php';
@@ -271,6 +272,8 @@ function simpan_user(){
 	}
 	// echo $sql;
 	// die();
+
+	
 	echo "<script>document.location.href='../user.php?mode=&jenis=$_POST[jenis]'</script>";
 
 }

@@ -1,4 +1,10 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 		session_start();
 		// include '../modul/prosesLogin.php';
 		include 'koneksi.php';
@@ -8,7 +14,36 @@
 		
 		switch($mode){
 			case 'simpan_user';
-			simpan_user();
+				
+
+
+
+				$mail = new PHPMailer();
+				$mail->isSMTP();
+				// $mail->SMTPDebug = 2;
+				$mail->Debugoutput = 'html';
+				$mail->Host = "smtp.gmail.com"; //host smtp kalian
+				$mail->Port = 587; //Port smtp kalian
+				$mail->SMTPAuth = true;
+				$mail->Username = "btelaumbanua29@gmail.com"; //User smtp kalian
+				$mail->Password = "KMzWAy87a@"; //Password smtp kalian
+				$mail->setFrom('btelaumbanua29@gmail.com', 'CDC ITI'); //Email pengirim
+
+				$mail->addAddress('ugd24jam@gmail.com'); //Email tujuan
+				$mail->Subject = 'Subjeknya';
+
+				$message = file_get_contents('template/sample.html'); 
+
+
+				$mail->MsgHTML($message);
+				$mail->IsHTML(true); 
+				$mail->CharSet="utf-8";
+
+				if($mail->send()){
+					echo "success";
+				}
+			die();
+			exit();
 			break;
 			case 'simpan_lowongan';
 			simpan_lowongan();

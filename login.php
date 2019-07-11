@@ -31,6 +31,7 @@
 <?php
 	}elseif($_GET['mode']=='regist'){
 ?>
+
 <div class="container">
 	<br>
 	<div class="col col-md-12" style="color: white;" align="left">
