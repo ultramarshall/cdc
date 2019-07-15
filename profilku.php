@@ -31,6 +31,16 @@ include 'header.php';
 							<td><?=$arr['nik']?></td>	
 					</tr>
 					<tr>
+							<td width="120px">Email</td>
+							<td width="1px">:</td>
+							<td><?=$arr['email']?></td>	
+					</tr>
+					<tr>
+							<td width="120px">Telepon</td>
+							<td width="1px">:</td>
+							<td><?=$arr['telepon']?></td>	
+					</tr>
+					<tr>
 							<td width="120px">TTL</td>
 							<td width="1px">:</td>
 							<td><?=$arr['tempat_lahir'].",".$arr['tgl_lahir']?></td>	

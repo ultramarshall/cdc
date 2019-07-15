@@ -223,16 +223,18 @@ function simpan_user()
     $tempat      = $_POST['tempat'];
     $tanggal     = $_POST['tanggal'];
     $harga       = tampil_harga('reguler', 'Pelamar');
+
     $mail        = new PHPMailer();
     $mail->isSMTP();
     $mail->SMTPDebug = 2;
     $mail->Debugoutput = 'html';
-    $mail->Host        = "smtp.mailgun.org"; //host smtp kalian
+    $mail->Host        = "smtp.gmail.com"; //host smtp kalian
     $mail->Port        = 587; //Port smtp kalian
     $mail->SMTPAuth    = true;
-    $mail->Username    = "postmaster@sandbox3ff47951dc864a269711ce8af9889665.mailgun.org"; //User smtp kalian
-    $mail->Password    = "972f010ccb1a2d924a30680f30805099-39bc661a-94406637"; //Password smtp kalian
+    $mail->Username    = "ugd24jam@gmail.com"; //User smtp kalian
+    $mail->Password    = "KMzWAy87a@"; //Password smtp kalian
     $mail->setFrom('no-reply@cdciti.com', 'CDC ITI'); //Email pengirim
+
     
     $mail->addAddress($email); //Email tujuan
     $mail->Subject = 'Subjeknya';
@@ -246,10 +248,10 @@ function simpan_user()
     $mail->IsHTML(true);
     $mail->CharSet = "utf-8";
     
-    /*if ($mail->send()) {
+    if ($mail->send()) {
         echo "success";
     }
-    die();*/
+    die();
     if (isset($_POST['kapasitas'])) {
         $kapasitas = $_POST['kapasitas'];
         $ext1      = ",'$kapasitas'";
