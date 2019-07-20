@@ -116,7 +116,7 @@ function lihat(){
 					<td><?=$arr['jenis']?></td>
 					
 					<td><?php if($arr['status']==2){echo "Aktif";}elseif($arr['status']==0){echo "<font color=red>Tidak Aktif</font>";}elseif($arr['status']==1){echo "<a href='$link'>Menunggu Approval</a>";}?></td>
-					<td><?php if($arr['status']==1){echo "<a href='?mode=approve&id=$arr[id_user]&jenis=$_GET[jenis]' class='btn btn-xs btn-success'>Approve</a> || ";} ?><a href="?mode=form&jenis=<?=$_GET['jenis']?>&id=<?=$arr['id_user']?>&t=<?=md5('term')?>" class="btn btn-xs btn-info">Edit</a> || <a href="modul/hapus.php?mode=hapus_user&id=<?=$arr['id_user']?>&jenis=<?=$_GET['jenis']?>" onclick="return confirm('Anda Yakin Ingin Menghapus Data Ini?')" class="btn btn-xs btn-danger">Hapus</a> || <a onclick="window.open('hasil_kuesioner.php?id=<?=$arr['id_user']?>','aa','width=700,height=900')" class="btn btn-xs btn-primary">Hasil Kuesioner</a></td>
+					<td><?php if($arr['status']==1){echo "<a href='?mode=approve&id=$arr[id_user]&jenis=$_GET[jenis]' class='btn btn-xs btn-success'>Approve</a> || ";} ?><a href="?mode=form&jenis=<?=$_GET['jenis']?>&id=<?=$arr['id_user']?>&t=<?=md5('term')?>" class="btn btn-xs btn-info">Edit</a> || <a href="modul/hapus.php?mode=hapus_user&id=<?=$arr['id_user']?>&jenis=<?=$_GET['jenis']?>" onclick="return confirm('Anda Yakin Ingin Menghapus Data Ini?')" class="btn btn-xs btn-danger">Hapus</a> ||<!--  <a onclick="window.open('hasil_kuesioner.php?id=<?=$arr['id_user']?>','aa','width=700,height=900')" class="btn btn-xs btn-primary">Hasil Kuesioner</a> --></td>
 				</tr>
 			<?php } ?>
 			</tbody>

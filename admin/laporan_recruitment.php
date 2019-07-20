@@ -251,6 +251,55 @@ function lihat2(){
 		
 		<div class="panel panel-container">
 		<!-- <div class="row"> -->
+
+			<form method="POST" action="modul/update.php?mode=update_job_sekeer&id=<?=$_GET['id']?>">
+			<div class="col-12">
+				<table class="table" style="background: #eee; border-left: 4px solid #aaa">
+					<!-- <tr>	
+						<td width="20%" class="text-right">Tanggal : </td>
+						<td><input name="test_date" type="date" class="form-control col-12" style="height: 30px;width: 90%;background-color: #d6e5ff;color: #002f82"></td>
+					</tr>
+					<tr>	
+						<td width="20%" class="text-right">Waktu : </td>
+						<td><input name="test_time" type="time" class="form-control col-12" style="height: 30px;width: 90%;background-color: #d6e5ff;color: #002f82"></td>
+					</tr> -->
+					<tr>	
+						<td width="20%" class="text-right">Waktu : </td>
+						<td>
+							<div class="form-group">
+							    <div class='input-group input-group-sm date' style="width: 90%" id='datetimepicker1'>
+							        <span class="input-group-addon">
+							            <span class="glyphicon glyphicon-calendar"></span>
+							        </span>
+							        <input type='text' name="test_date" class="form-control"/>
+							    </div>
+							</div>
+							<script type="text/javascript">
+							$(function () {
+							    $('#datetimepicker1').datetimepicker();
+							});
+							</script>
+						</td>
+					</tr>
+					<tr>	
+						<td width="20%" class="text-right">Tempat : </td>
+						<td><textarea name="test_location" class="form-control" style="width: 90%" cols="30" rows="3"></textarea></td>
+					</tr>
+					<tr>	
+						<td width="20%" class="text-right">Jenis Tes : </td>
+						<td>
+							<select name="test_type" class="form-control" style="width: 90%">
+								<option value="Tes Tertulis">Tes Tertulis</option>
+								<option value="Interview">Interview</option>
+							</select>
+						</td>
+					</tr>
+					<tr>	
+						<td width="20%" class="text-right">Detail : </td>
+						<td><textarea name="test_detail" class="form-control" style="width: 90%" cols="30" rows="3"></textarea></td>
+					</tr>
+				</table>
+			</div>
 			<table class="table table-hover">
 			<thead>
 				<tr>			
@@ -266,7 +315,6 @@ function lihat2(){
 					
 				</tr>
 			</thead>
-			<form method="POST" action="modul/update.php?mode=update_job_sekeer&id=<?=$_GET['id']?>">
 			<tbody>
 			<?php
 				$no=1;

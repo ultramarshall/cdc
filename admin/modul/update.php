@@ -158,6 +158,11 @@ function update_user(){
 }
 
 function update_job_sekeer($id){
+	
+	/*echo "<pre>";
+	var_dump($_POST);
+	echo "</pre>";
+	die();*/
 	$az=1;
 	$id_user=$_POST['user'];
 	$ceklist=$_POST['ceklist'];
@@ -171,9 +176,24 @@ function update_job_sekeer($id){
 			where id_user='$id_user[$a]' AND id_lowongan='$id'";
 	// echo $sql."</br>";
 	$res=mysql_query($sql);
+
+
 	}
 
 	if($res){
+		
+			$td = $_POST['test_date'];
+			$tl = $_POST['test_location'];
+			$tt = $_POST['test_type'];
+			$ddt = $_POST['test_detail'];
+			mysql_query("UPDATE lowongan SET test_date='$td',test_location='$tl', test_type='$tt', test_detail='$ddt' WHERE id_lowongan=$id");
+			$res=mysql_query($sql);
+
+			/*echo "<pre>";
+			var_dump($res);
+			echo "</pre>";
+			die();*/
+
 			echo "<script>alert('Data List Diterima Diperbarui!')</script>";
 		}else{
 			echo "<script>alert('Data List Diterima Gagal Diperbarui!')</script>";

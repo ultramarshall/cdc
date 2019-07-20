@@ -30,10 +30,11 @@
 				$sql_tambahan="";
 			}
 			$no=1;
-			 $query="Select c.id_lowongan,judul,isi,a.tanggal,a.jam,deskripsi,provinsi,a.jenis,b.nama,foto,b.website from lowongan a inner join user b on a.id_comp=b.id_user inner join tbl_lamar c on a.id_lowongan=c.id_lowongan where c.id_user='$id'  $sql_tambahan";
+			 $query="Select c.id_lowongan,judul,isi,a.tanggal,a.jam,deskripsi,provinsi,a.jenis,b.nama,foto,b.website from lowongan a inner join user b on a.id_comp=b.id_user inner join tbl_lamar c on a.id_lowongan=c.id_lowongan where c.id_user='$id' AND c.panggilan = 1  $sql_tambahan";
 			 // echo $query;
 			 $res=mysql_query($query);
 			 while($row=mysql_fetch_array($res)){			
+			 	
 			 $mod=$no%2;
 			 if($mod==0){
 			 	$bgColor="#ffedce";
@@ -83,6 +84,13 @@
 		  				
 						<br>
 						<?=$row['deskripsi']?>
+						<br>
+						<p style="margin: 0">asd</p>
+						<style>
+							.table-border {
+								border-color: red;
+							}
+						</style>
 						</td>
 					</tr>
 					<tr>
@@ -101,7 +109,7 @@
 		  				$arr1=mysql_fetch_array($res3);
 		  				if(mysql_num_rows($res3)>0){
 		  					$disable="class='btn btn-md btn-success' ";
-		  					$kata="Lihat Pengumuman";
+		  					$kata="Daftar Peserta";
 		  					// $target="data/".$row['file'];
 		  				}else{
 		  					$disable="class='btn btn-md btn-disable' disabled";
@@ -115,6 +123,7 @@
 		  			
 		  			<a <?php if(mysql_num_rows($res3)>0){ ?> href="panggilan_detail.php?id=<?=$row['id_lowongan']?>&judul=<?=$row['judul']?>"  target="_blank" <?php } ?>>
 		  				<button  style="width: 100%"<?=$disable?>><?=$kata?></button>
+		  				
 		  			</a>	
 		  			<!-- </form> -->
 		  			<?php }else{?>
