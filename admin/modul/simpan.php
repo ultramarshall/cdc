@@ -1,5 +1,4 @@
 <?php
-die();
 		session_start();
 		// include '../modul/prosesLogin.php';
 		include 'koneksi.php';
@@ -50,7 +49,6 @@ die();
 		
 
 function simpan_lowongan(){
-
 	$judul=strtolower($_POST['judul']);
 	$isi=$_POST['isi'];
 	$gaji=$_POST['gaji1']."-".$_POST['gaji2'];
