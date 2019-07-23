@@ -190,6 +190,12 @@ function baliktgl($tgl){
 }
 
 function simpan_konsul(){
+	echo "<pre>";
+	// var_dump($_POST);
+	echo "asdasd";
+	echo "</pre>";
+	die();
+
 	$judul=$_POST['judul'];
 	$keterangan=$_POST['keterangan'];
 	$tanggal=baliktgl($_POST['tanggal']);

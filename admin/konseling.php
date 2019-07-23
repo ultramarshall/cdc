@@ -1,6 +1,5 @@
 <?php
 	include 'header.php';
-	
 ?>
 <div id="badan">
 	
@@ -169,7 +168,11 @@
 								</tr>
 							</table>
 						</div>
-						<button class="btn btn-md btn-success" type="submit"><?php if(isset($_GET['kode'])){ echo "Update Jadwal"; }else{ echo "Simpan Jadwal";} ?></button>
+
+						<button class="btn btn-md btn-success" type="submit">
+							<?php if(isset($_GET['kode'])){ echo "Update Jadwal"; }else{ echo "Simpan Jadwal";} ?>
+						</button>
+
 						</form>		
 					</div>
 <script>

@@ -1,5 +1,13 @@
 <?php
     include 'header.php';
+
+    date_default_timezone_set('Asia/Jakarta');
+    $sql = mysql_query("SELECT * FROM konsul_time");
+    
+    /*echo "<pre>";
+    print_r($row);
+    echo "</pre>";*/
+    
 ?>
 
     <section id="blog" class="container">
@@ -11,56 +19,161 @@
         <div class="blog">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="blog-item">
-                        <img class="img-responsive img-blog" src="images/blog/blog1.jpg" width="100%" alt="" />
-                            <div class="row">  
-                            <?php
-                                $sql="Select * from konsul  where tanggal>=current_date";
-                                $res=mysql_query($sql);
-                                while($arr=mysql_fetch_array($res)){
-                                $bulan=array("01"=>"Januari","02"=>"Febuari","03"=>"Maret","04"=>"April","05"=>"Mei","06"=>"Juni","07"=>"Juli","08"=>"Agustus","09"=>"September","10"=>"Oktober","11"=>"November","12"=>"Desember");
-                                $pecah=explode("-",$arr['tanggal']);
-                                $tahun=$pecah[0];
-                                $bln=$pecah[1];
-                                $tanggal=$pecah[2];
-                                $sql1="Select * from tbl_ruangan  where id_ruangan='$arr[ruangan]'";
-                                $res1=mysql_query($sql1);
-                                $arr1=mysql_fetch_array($res1);
-                                $sql2="Select * from detail_konsul  where id_konsul='$arr[id_konsul]'";
-                                $res2=mysql_query($sql2);
-                                $arr2=mysql_fetch_array($res2);
-                                
-                            ?>
-                                <div class="col-xs-12 col-sm-2 text-center">
-                                    <div class="entry-meta">
-                                        <span id="publish_date">  <?=$tanggal." / ".$bulan["$bln"]." / ".$tahun?></span>
-                                        <span><font color="red">Pukul : <?=$arr['jam']." WIB"?></font></span>
-                                        <span><font color="red">Ruangan : <?=$arr1['nama_ruangan']." WIB"?></font></span>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-10 blog-content">
-                                    <h2><?=$arr['judul']?></h2>
-                                    <p><?=$arr['keterangan']?></p>
-
-                                    <div class="post-tags">
-                                        <strong>Tag:</strong>  <a href="#">Konsul</a><br>
-                                    <?php
-                                    if(mysql_num_rows($res2) >= $arr['kapasitas']){
-                                    ?>
-                                     <button class="btn btn-md btn-danger" onclick="booking_konsul(this.id)" id="<?=$arr['id_konsul']?>" disabled>&nbsp;Penuh</button>
-                                    <?php
-                                    }else{
-                                    ?>
-                                        <button class="btn btn-md btn-danger" onclick="booking_konsul(this.id)" id="<?=$arr['id_konsul']?>">&nbsp;Booking</button>
-                                    <?php } ?>
-                                    </div>
-
-                                </div>
-                            <?php } ?>
-                            </div>
-                        </div><!--/.blog-item-->
+                    <div>
                         
-                <!--/.col-md-3-->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <?php while ($row=mysql_fetch_object($sql)): ?>
+                            <li role="presentation">
+                                <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                                    <?=date("d", strtotime($row->from))?> - <?=date("d", strtotime($row->to))?>
+                                </a>
+                            </li>    
+                            <?php endwhile ?>
+                            <!-- <li role="presentation">
+                                <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a>
+                            </li>
+                            <li role="presentation" class="active">
+                                <a href="#office" aria-controls="profile" role="tab" data-toggle="tab">Office</a>
+                            </li> -->
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane" id="home">
+                            </div>
+                            <div role="tabpanel" class="tab-pane active" id="office">Office</div>
+                        </div>
+
+                    </div>
+                    <table class="table table-bordered" style="background: #fff">
+                       <tbody>
+                            <tr style="background: orange">
+                                <td class="text-center">
+                                    <p>Jam</p>
+                                    <p>(WIB)</p>
+                                </td>
+                                <td>
+                                    <p>Senin</p>
+                                </td>
+                                <td>
+                                    <p>Selasa</p>
+                                </td>
+                                <td>
+                                    <p>Rabu</p>
+                                </td>
+                                <td>
+                                    <p>Kamis</p>
+                                </td>
+                                <td>
+                                    <p>Jumat</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <p>09.00</p>
+                                </td>
+                                <td class="text-center available">
+                                    <button class="btn btn-xs btn-success" style="margin-top: 15px">
+                                        <i class="icon-plus"></i>
+                                        <span>AVAILABLE</span>
+                                    </button>
+                                </td>
+                                <td class="text-center booked">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center booked">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center booked">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center booked">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <p>09.00</p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <p>09.00</p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <p>09.00</p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <p>09.00</p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                                <td class="text-center">
+                                    <p><i class="icon-coffee icon-3x"></i></p>
+                                </td>
+                            </tr>
+                       </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section><!--/#bottom-->

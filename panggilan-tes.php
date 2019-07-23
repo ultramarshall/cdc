@@ -30,17 +30,17 @@
 				$sql_tambahan="";
 			}
 			$no=1;
-			 $query="Select c.id_lowongan,judul,isi,a.tanggal,a.jam,deskripsi,provinsi,a.jenis,b.nama,foto,b.website from lowongan a inner join user b on a.id_comp=b.id_user inner join tbl_lamar c on a.id_lowongan=c.id_lowongan where c.id_user='$id' AND c.panggilan = 1  $sql_tambahan";
+			 $query="SELECT c.id_lowongan,judul,isi,a.tanggal,a.jam,deskripsi,provinsi,a.jenis,b.nama,foto,b.website,a.test_date,a.test_location,a.test_type,a.test_detail FROM lowongan a inner join user b on a.id_comp=b.id_user inner join tbl_lamar c on a.id_lowongan=c.id_lowongan where c.id_user='$id' AND c.panggilan = 1  $sql_tambahan";
 			 // echo $query;
 			 $res=mysql_query($query);
 			 while($row=mysql_fetch_array($res)){			
 			 	
-			 $mod=$no%2;
-			 if($mod==0){
-			 	$bgColor="#ffedce";
-			 }else{
-			 	$bgColor="#f7c079";
-			 }
+				 $mod=$no%2;
+				 if($mod==0){
+				 	$bgColor="#ffedce";
+				 }else{
+				 	$bgColor="#f7c079";
+				 }
 			?>	
 				<div style="background-color: <?=$bgColor?>;border-color: black;width: 100%;height: 100%;margin-top: 7px;">
 				<table  width="95%" align="center" class="table table-responsive table-hover">
@@ -78,65 +78,81 @@
         <div class="modal-body" style="background-color:#fcdca9;">
         <table  width="100%">
         <tr>
-						<td width="20%" align="center"><img class="img img-circle" src="admin/user/<?=$row['foto']?>" style="width:120px;height: 120px"></td>
-						<td style="padding-left: 1%;"><font  style="color: #011982;" size="5"><strong><?=strtoupper($row['nama'])?></strong></font><br><?="Post Time :".$row['tanggal']."||".$row['jam']?><br>
-						<a href="http://<?=$row['website']?>" target="blank"><?=$row['website']?></a>
-		  				
-						<br>
-						<?=$row['deskripsi']?>
-						<br>
-						<p style="margin: 0">asd</p>
-						<style>
-							.table-border {
-								border-color: red;
-							}
-						</style>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-						<br>
-								<div class="container">
+			<td width="20%" align="center"><img class="img img-circle" src="admin/user/<?=$row['foto']?>" style="width:120px;height: 120px"></td>
+			<td style="padding-left: 1%;">
+				<p>
+					<font  style="color: #011982;" size="5"><strong><?=strtoupper($row['nama'])?></strong></font>
+					
+				</p>
+				<a href="http://<?=$row['website']?>" target="blank"><?=$row['website']?></a>
+				<style>
+					.table-border {
+						border-color: red;
+					}
+				</style>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="container">
+					<div class="tab-content">
+				  		<div style="background-color: white;width: 100%;border-color: black;padding-left: 2%;padding-right: 2%;padding-top: 1%;padding-bottom: 1%;">
+				  				<!-- <?=$row['isi']?> -->
+				  				<table class="table table-bordered">
+				  					<tbody>
+				  						<tr>
+				  							<td width="30%" class="text-right">Waktu Tes : </td>
+				  							<td><?=$row['test_date']?></td>
+				  						</tr>
+				  						<tr>
+				  							<td width="30%" class="text-right">Lokasi : </td>
+				  							<td><?=$row['test_location']?></td>
+				  						</tr>
+				  						<tr>
+				  							<td width="30%" class="text-right">Jenis Tes : </td>
+				  							<td><?=$row['test_type']?></td>
+				  						</tr>
+				  						<tr>
+				  							<td width="30%" class="text-right">Note : </td>
+				  							<td><?=$row['test_detail']?></td>
+				  						</tr>
+				  					</tbody>
+				  				</table>
+				  			<?php
+				  				if(isset($_SESSION['id'])){
+				  				$sql3="SELECT * FROM tbl_lamar  where id_lowongan='$row[id_lowongan]' AND panggilan<>'0'";
+				  				// echo $sql3;
+				  				$res3=mysql_query($sql3);
+				  				$arr1=mysql_fetch_array($res3);
+				  				if(mysql_num_rows($res3)>0){
+				  					$disable="class='btn btn-md btn-success' ";
+				  					$kata="Daftar Peserta";
+				  					// $target="data/".$row['file'];
+				  				}else{
+				  					$disable="class='btn btn-md btn-disable' disabled";
+				  					$kata="Pengumuman Belum Dimasukan Oleh Perusahaan";
+				  					// $target="";
+				  				}	
+				  			?>
 
-			<div class="tab-content">
-		  		<div style="background-color: white;width: 100%;border-color: black;padding-left: 2%;padding-right: 2%;padding-top: 1%;padding-bottom: 1%;">
-		  				<?=$row['isi']?>
-		  			<?php
-		  				if(isset($_SESSION['id'])){
-		  				$sql3="SELECT * FROM tbl_lamar  where id_lowongan='$row[id_lowongan]' AND panggilan<>'0'";
-		  				// echo $sql3;
-		  				$res3=mysql_query($sql3);
-		  				$arr1=mysql_fetch_array($res3);
-		  				if(mysql_num_rows($res3)>0){
-		  					$disable="class='btn btn-md btn-success' ";
-		  					$kata="Daftar Peserta";
-		  					// $target="data/".$row['file'];
-		  				}else{
-		  					$disable="class='btn btn-md btn-disable' disabled";
-		  					$kata="Pengumuman Belum Dimasukan Oleh Perusahaan";
-		  					// $target="";
-		  				}	
-		  			?>
+				  			<!-- <form action="modul/simpan.php?mode=simpan_lowongan" method="POST"> -->
+				  			<input type="hidden" name="id_lowongan" value="<?=$arr['id_lowongan']?>">
+				  			
+				  			<a <?php if(mysql_num_rows($res3)>0){ ?> href="panggilan_detail.php?id=<?=$row['id_lowongan']?>&judul=<?=$row['judul']?>"  target="_blank" <?php } ?>>
+				  				<button  style="width: 100%"<?=$disable?>><?=$kata?></button>
+				  				
+				  			</a>	
+				  			<!-- </form> -->
+				  			<?php }else{?>
 
-		  			<!-- <form action="modul/simpan.php?mode=simpan_lowongan" method="POST"> -->
-		  			<input type="hidden" name="id_lowongan" value="<?=$arr['id_lowongan']?>">
-		  			
-		  			<a <?php if(mysql_num_rows($res3)>0){ ?> href="panggilan_detail.php?id=<?=$row['id_lowongan']?>&judul=<?=$row['judul']?>"  target="_blank" <?php } ?>>
-		  				<button  style="width: 100%"<?=$disable?>><?=$kata?></button>
-		  				
-		  			</a>	
-		  			<!-- </form> -->
-		  			<?php }else{?>
-
-		  			<a onclick="alert('Login Dulu Jika Ingin Apply')" href="login.php"><button class="btn btn-md btn-info">Apply</button></a>
-		  			<?php } ?>
-		  		</div>
+				  			<a onclick="alert('Login Dulu Jika Ingin Apply')" href="login.php"><button class="btn btn-md btn-info">Apply</button></a>
+				  			<?php } ?>
+				  		</div>
+					</div>
 				</div>
-			</div>
-
-						</td>
-					</tr>
-        </table>
+			</td>
+		</tr>
+</table>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

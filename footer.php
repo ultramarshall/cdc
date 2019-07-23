@@ -82,7 +82,7 @@
 
 
   function booking_konsul(id){
-    $.ajax({
+   /* $.ajax({
         url:"modul/simpan.php?mode=booking_konsul",
         method:"POST",
         data:{id:id},
@@ -91,7 +91,8 @@
             // console.log(rest);
 
         }
-    });
+    });*/
+    $('#booking_time').fadeIn()
   }
   </script>
 

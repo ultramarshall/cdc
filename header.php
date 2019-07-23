@@ -68,6 +68,8 @@ function tampil_harga($type,$jenis){
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->       
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" integrity="sha256-MmuZTsWcczT1IhH71aqQmja5jRcXy3mL/NOvjUy9tso=" crossorigin="anonymous" />
     <link rel="shortcut icon" href="images/ico/logo-iti.png">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/logo-iti.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/logo-iti.png">
