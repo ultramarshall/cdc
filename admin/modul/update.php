@@ -159,10 +159,10 @@ function update_user(){
 
 function update_job_sekeer($id){
 	
-	/*echo "<pre>";
+	echo "<pre>";
 	var_dump($_POST);
 	echo "</pre>";
-	die();*/
+	die();
 	$az=1;
 	$id_user=$_POST['user'];
 	$ceklist=$_POST['ceklist'];
