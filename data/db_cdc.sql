@@ -12,7 +12,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping structure for table cdc-iti_terbaru.alumni
-DROP TABLE IF EXISTS `alumni`;
 CREATE TABLE IF NOT EXISTS `alumni` (
   `id_alumni` int(5) NOT NULL AUTO_INCREMENT,
   `nim` int(15) DEFAULT NULL,
@@ -18968,7 +18967,6 @@ REPLACE INTO `alumni` (`id_alumni`, `nim`, `nama`, `angkatan`, `prodi`, `telepon
 /*!40000 ALTER TABLE `alumni` ENABLE KEYS */;
 
 -- Dumping structure for table cdc-iti_terbaru.bank
-DROP TABLE IF EXISTS `bank`;
 CREATE TABLE IF NOT EXISTS `bank` (
   `id_bank` int(5) NOT NULL AUTO_INCREMENT,
   `nama_bank` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -18985,7 +18983,6 @@ REPLACE INTO `bank` (`id_bank`, `nama_bank`, `no_rek`, `gambar`) VALUES
 /*!40000 ALTER TABLE `bank` ENABLE KEYS */;
 
 -- Dumping structure for table cdc-iti_terbaru.banner
-DROP TABLE IF EXISTS `banner`;
 CREATE TABLE IF NOT EXISTS `banner` (
   `id_banner` int(3) NOT NULL AUTO_INCREMENT,
   `judul` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -19004,24 +19001,21 @@ REPLACE INTO `banner` (`id_banner`, `judul`, `gambar`, `tanggal`, `id_user`) VAL
 /*!40000 ALTER TABLE `banner` ENABLE KEYS */;
 
 -- Dumping structure for table cdc-iti_terbaru.detail_konsul
-DROP TABLE IF EXISTS `detail_konsul`;
 CREATE TABLE IF NOT EXISTS `detail_konsul` (
   `id_detail_konsul` int(3) NOT NULL AUTO_INCREMENT,
   `id_konsul` int(3) NOT NULL,
   `id_user` int(3) NOT NULL,
   `tanggal` date NOT NULL,
   PRIMARY KEY (`id_detail_konsul`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
--- Dumping data for table cdc-iti_terbaru.detail_konsul: 2 rows
+-- Dumping data for table cdc-iti_terbaru.detail_konsul: 1 rows
 /*!40000 ALTER TABLE `detail_konsul` DISABLE KEYS */;
 REPLACE INTO `detail_konsul` (`id_detail_konsul`, `id_konsul`, `id_user`, `tanggal`) VALUES
-	(4, 1, 3, '2018-07-30'),
-	(10, 2, 3, '2018-07-30');
+	(11, 1, 3, '2019-07-21');
 /*!40000 ALTER TABLE `detail_konsul` ENABLE KEYS */;
 
 -- Dumping structure for table cdc-iti_terbaru.event
-DROP TABLE IF EXISTS `event`;
 CREATE TABLE IF NOT EXISTS `event` (
   `id_event` int(5) NOT NULL AUTO_INCREMENT,
   `id_user` int(5) NOT NULL,
@@ -19041,7 +19035,6 @@ REPLACE INTO `event` (`id_event`, `id_user`, `judul`, `isi`, `gambar`, `tanggal`
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 
 -- Dumping structure for table cdc-iti_terbaru.harga
-DROP TABLE IF EXISTS `harga`;
 CREATE TABLE IF NOT EXISTS `harga` (
   `id_harga` int(3) NOT NULL AUTO_INCREMENT,
   `harga` int(10) NOT NULL,
@@ -19059,7 +19052,6 @@ REPLACE INTO `harga` (`id_harga`, `harga`, `type`, `jenis`) VALUES
 /*!40000 ALTER TABLE `harga` ENABLE KEYS */;
 
 -- Dumping structure for table cdc-iti_terbaru.konsul
-DROP TABLE IF EXISTS `konsul`;
 CREATE TABLE IF NOT EXISTS `konsul` (
   `id_konsul` int(3) NOT NULL AUTO_INCREMENT,
   `judul` varchar(35) COLLATE utf8_unicode_ci NOT NULL,
@@ -19074,12 +19066,27 @@ CREATE TABLE IF NOT EXISTS `konsul` (
 -- Dumping data for table cdc-iti_terbaru.konsul: 2 rows
 /*!40000 ALTER TABLE `konsul` DISABLE KEYS */;
 REPLACE INTO `konsul` (`id_konsul`, `judul`, `keterangan`, `tanggal`, `ruangan`, `jam`, `kapasitas`) VALUES
-	(1, 'Konsul Pemrogramman', 'Membahas tentang dunia kerja dibidang pemrogramman', '2018-07-31', 1, '11:06', 3),
-	(2, 'Tes ni fif', 'Tes ni', '2018-08-15', 2, '07:50', 1);
+	(1, 'Konsul Pemrogramman', 'Membahas tentang dunia kerja dibidang pemrogramman', '2019-11-31', 1, '11:06', 3),
+	(2, 'Tes ni fif', 'Tes ni', '2019-10-4', 2, '07:50', 1);
 /*!40000 ALTER TABLE `konsul` ENABLE KEYS */;
 
+-- Dumping structure for table cdc-iti_terbaru.konsul_time
+CREATE TABLE IF NOT EXISTS `konsul_time` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `from` date DEFAULT NULL,
+  `to` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table cdc-iti_terbaru.konsul_time: ~1 rows (approximately)
+/*!40000 ALTER TABLE `konsul_time` DISABLE KEYS */;
+REPLACE INTO `konsul_time` (`id`, `from`, `to`) VALUES
+	(3, '2019-07-23', '2019-07-25'),
+	(4, '2019-07-26', '2019-07-27'),
+	(5, '2019-07-28', '2019-07-29');
+/*!40000 ALTER TABLE `konsul_time` ENABLE KEYS */;
+
 -- Dumping structure for table cdc-iti_terbaru.lowongan
-DROP TABLE IF EXISTS `lowongan`;
 CREATE TABLE IF NOT EXISTS `lowongan` (
   `id_lowongan` int(5) NOT NULL AUTO_INCREMENT,
   `judul` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
@@ -19108,7 +19115,6 @@ REPLACE INTO `lowongan` (`id_lowongan`, `judul`, `isi`, `gaji`, `provinsi`, `jen
 /*!40000 ALTER TABLE `lowongan` ENABLE KEYS */;
 
 -- Dumping structure for table cdc-iti_terbaru.pembayaran
-DROP TABLE IF EXISTS `pembayaran`;
 CREATE TABLE IF NOT EXISTS `pembayaran` (
   `id_pembayaran` int(5) NOT NULL AUTO_INCREMENT,
   `id_user` int(5) NOT NULL,
@@ -19148,7 +19154,6 @@ REPLACE INTO `pembayaran` (`id_pembayaran`, `id_user`, `id_bank`, `waktu`, `foto
 /*!40000 ALTER TABLE `pembayaran` ENABLE KEYS */;
 
 -- Dumping structure for table cdc-iti_terbaru.tbl_cv
-DROP TABLE IF EXISTS `tbl_cv`;
 CREATE TABLE IF NOT EXISTS `tbl_cv` (
   `id_cv` int(5) NOT NULL AUTO_INCREMENT,
   `id_user` int(5) NOT NULL,
@@ -19165,7 +19170,6 @@ REPLACE INTO `tbl_cv` (`id_cv`, `id_user`, `file`) VALUES
 /*!40000 ALTER TABLE `tbl_cv` ENABLE KEYS */;
 
 -- Dumping structure for table cdc-iti_terbaru.tbl_kuesioner
-DROP TABLE IF EXISTS `tbl_kuesioner`;
 CREATE TABLE IF NOT EXISTS `tbl_kuesioner` (
   `id_kueesioner` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
@@ -19195,7 +19199,6 @@ REPLACE INTO `tbl_kuesioner` (`id_kueesioner`, `id_user`, `no_1`, `no_2`, `no_3`
 /*!40000 ALTER TABLE `tbl_kuesioner` ENABLE KEYS */;
 
 -- Dumping structure for table cdc-iti_terbaru.tbl_lamar
-DROP TABLE IF EXISTS `tbl_lamar`;
 CREATE TABLE IF NOT EXISTS `tbl_lamar` (
   `id_lamar` int(5) NOT NULL AUTO_INCREMENT,
   `id_lowongan` int(5) NOT NULL,
@@ -19217,7 +19220,6 @@ REPLACE INTO `tbl_lamar` (`id_lamar`, `id_lowongan`, `id_user`, `tanggal`, `jam`
 /*!40000 ALTER TABLE `tbl_lamar` ENABLE KEYS */;
 
 -- Dumping structure for table cdc-iti_terbaru.tbl_ruangan
-DROP TABLE IF EXISTS `tbl_ruangan`;
 CREATE TABLE IF NOT EXISTS `tbl_ruangan` (
   `id_ruangan` int(11) NOT NULL AUTO_INCREMENT,
   `nama_ruangan` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
@@ -19233,7 +19235,6 @@ REPLACE INTO `tbl_ruangan` (`id_ruangan`, `nama_ruangan`, `detail`) VALUES
 /*!40000 ALTER TABLE `tbl_ruangan` ENABLE KEYS */;
 
 -- Dumping structure for table cdc-iti_terbaru.user
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int(10) NOT NULL AUTO_INCREMENT,
   `nik` int(15) NOT NULL,
