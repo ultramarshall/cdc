@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
+-- Host:                         localhost
 -- Server version:               5.7.17-log - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL Version:             9.5.0.5196
@@ -10,12 +10,6 @@
 /*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-
-
--- Dumping database structure for cdc-iti_terbaru
-DROP DATABASE IF EXISTS `cdc-iti_terbaru`;
-CREATE DATABASE IF NOT EXISTS `cdc-iti_terbaru` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `cdc-iti_terbaru`;
 
 -- Dumping structure for table cdc-iti_terbaru.alumni
 DROP TABLE IF EXISTS `alumni`;
@@ -31,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `alumni` (
   PRIMARY KEY (`id_alumni`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1221723938 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table cdc-iti_terbaru.alumni: 18.935 rows
+-- Dumping data for table cdc-iti_terbaru.alumni: 18,935 rows
 /*!40000 ALTER TABLE `alumni` DISABLE KEYS */;
 REPLACE INTO `alumni` (`id_alumni`, `nim`, `nama`, `angkatan`, `prodi`, `telepon`, `ponsel`, `email`) VALUES
 	(1221705003, 22840060, 'A D L I S', 1984, 'ARSITEKTUR/REGULER', '', '', '022840060@iti.ac.id?'),
@@ -19083,6 +19077,23 @@ REPLACE INTO `konsul` (`id_konsul`, `judul`, `keterangan`, `tanggal`, `ruangan`,
 	(2, 'Tes ni fif', 'Tes ni', '2019-10-4', 2, '07:50', 1);
 /*!40000 ALTER TABLE `konsul` ENABLE KEYS */;
 
+-- Dumping structure for table cdc-iti_terbaru.konsul_jadwal
+DROP TABLE IF EXISTS `konsul_jadwal`;
+CREATE TABLE IF NOT EXISTS `konsul_jadwal` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `jam` time NOT NULL DEFAULT '00:00:00',
+  `tanggal` date NOT NULL DEFAULT '0000-00-00',
+  `user_id` int(11) DEFAULT NULL,
+  `konsul_time_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table cdc-iti_terbaru.konsul_jadwal: ~1 rows (approximately)
+/*!40000 ALTER TABLE `konsul_jadwal` DISABLE KEYS */;
+REPLACE INTO `konsul_jadwal` (`id`, `jam`, `tanggal`, `user_id`, `konsul_time_id`) VALUES
+	(1, '00:00:00', '2019-07-23', 3, 1);
+/*!40000 ALTER TABLE `konsul_jadwal` ENABLE KEYS */;
+
 -- Dumping structure for table cdc-iti_terbaru.konsul_time
 DROP TABLE IF EXISTS `konsul_time`;
 CREATE TABLE IF NOT EXISTS `konsul_time` (
@@ -19090,14 +19101,14 @@ CREATE TABLE IF NOT EXISTS `konsul_time` (
   `from` date DEFAULT NULL,
   `to` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table cdc-iti_terbaru.konsul_time: ~3 rows (approximately)
 /*!40000 ALTER TABLE `konsul_time` DISABLE KEYS */;
 REPLACE INTO `konsul_time` (`id`, `from`, `to`) VALUES
 	(3, '2019-07-23', '2019-07-25'),
 	(4, '2019-07-26', '2019-07-27'),
-	(5, '2019-07-28', '2019-07-29');
+	(5, '2019-08-28', '2019-08-29');
 /*!40000 ALTER TABLE `konsul_time` ENABLE KEYS */;
 
 -- Dumping structure for table cdc-iti_terbaru.lowongan
