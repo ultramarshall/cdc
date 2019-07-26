@@ -75,6 +75,9 @@ function tampil_harga($type,$jenis){
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/logo-iti.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/logo-iti.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/logo-iti.png">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
 </head><!--/head-->
 
 <body class="homepage">

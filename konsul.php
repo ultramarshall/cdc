@@ -2,14 +2,35 @@
     include 'header.php';
 
     date_default_timezone_set('Asia/Jakarta');
-    $sql = mysql_query("SELECT * FROM konsul_time");
-    
-    /*echo "<pre>";
-    print_r($row);
-    echo "</pre>";*/
+
+    $bulan = date("m");
+    $tahun = date("Y");
+
+    $sql = mysql_query("SELECT * FROM konsul_time as a WHERE month(a.from) = $bulan and year(a.from) = $tahun");
+
+    $resultSQL = [];
+    while ($row=mysql_fetch_object($sql)) {
+        $r = [
+            'id'=>$row->id, 
+            'from'=>$row->from, 
+            'to'=>$row->to
+        ];
+        array_push($resultSQL, $r);
+    }
+    echo "<pre>";
+    var_dump($resultSQL);
+    echo "</pre>";
+    // die();
+    // month
+    $dateObj   = DateTime::createFromFormat('!m', date("m"));
+    $monthName = $dateObj->format('F') . " " .  date("Y");
     
 ?>
-
+    <style>
+        .available {
+            background: #7acc5a
+        }
+    </style>
     <section id="blog" class="container">
         <div class="center">
             <h2>Konsultasi</h2>
@@ -20,163 +41,57 @@
             <div class="row">
                 <div class="col-md-12">
                     <div>
-                        
+                        <h4><?=$monthName?></h4>
                         <ul class="nav nav-tabs" role="tablist">
-                            <?php while ($row=mysql_fetch_object($sql)): ?>
+                            <?php foreach ($resultSQL as $key => $row): ?>
                             <li role="presentation">
-                                <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
-                                    <?=date("d", strtotime($row->from))?> - <?=date("d", strtotime($row->to))?>
+                                <a href="#home" id="data-tab" aria-controls="home" role="tab" data-toggle="tab" data-tab="<?=$row['id']?>">
+                                    <?=date("d", strtotime($row['from']))?> - <?=date("d", strtotime($row['to']))?>
                                 </a>
                             </li>    
-                            <?php endwhile ?>
-                            <!-- <li role="presentation">
-                                <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a>
-                            </li>
-                            <li role="presentation" class="active">
-                                <a href="#office" aria-controls="profile" role="tab" data-toggle="tab">Office</a>
-                            </li> -->
+                            <?php endforeach ?>
                         </ul>
 
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane" id="home">
+                            <div role="tabpanel" class="tab-pane active" id="tabpanel">
+                                <div style="width: 100%; text-align: center">
+                                    <img src="images/loading.svg" style="margin: auto; border: 1px">
+                                </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane active" id="office">Office</div>
                         </div>
 
                     </div>
-                    <table class="table table-bordered" style="background: #fff">
-                       <tbody>
-                            <tr style="background: orange">
-                                <td class="text-center">
-                                    <p>Jam</p>
-                                    <p>(WIB)</p>
-                                </td>
-                                <td>
-                                    <p>Senin</p>
-                                </td>
-                                <td>
-                                    <p>Selasa</p>
-                                </td>
-                                <td>
-                                    <p>Rabu</p>
-                                </td>
-                                <td>
-                                    <p>Kamis</p>
-                                </td>
-                                <td>
-                                    <p>Jumat</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <p>09.00</p>
-                                </td>
-                                <td class="text-center available">
-                                    <button class="btn btn-xs btn-success" style="margin-top: 15px">
-                                        <i class="icon-plus"></i>
-                                        <span>AVAILABLE</span>
-                                    </button>
-                                </td>
-                                <td class="text-center booked">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center booked">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center booked">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center booked">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <p>09.00</p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <p>09.00</p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <p>09.00</p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <p>09.00</p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                                <td class="text-center">
-                                    <p><i class="icon-coffee icon-3x"></i></p>
-                                </td>
-                            </tr>
-                       </tbody>
-                    </table>
+                    
                 </div>
             </div>
         </div>
     </section><!--/#bottom-->
+    <script>
+
+        $(document).ready(function(){
+            var id = $("#data-tab").attr("data-tab");
+            GETSCHEDULE(id);
+        });
+
+        $(document).on('click', '#data-tab', function(){
+            var id = $(this).attr("data-tab");
+            GETSCHEDULE(id);
+        })
+
+        function GETSCHEDULE(id) {
+            $.ajax({
+                type: 'POST',
+                url: "pages/kalender.php",
+                data: {
+                    id : id
+                },
+                success: function(data) {
+                    $('#tabpanel').html(data);
+                }
+            });
+        }
+    </script>
 <?php
     include 'footer.php';
 ?>
